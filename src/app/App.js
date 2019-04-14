@@ -11,9 +11,14 @@ import { ACCESS_TOKEN } from '../constants';
 import AppHeader from '../common/AppHeader';
 
 import { Layout, notification } from 'antd';
+import LoadingIndicator from "../common/LoadingIndicator";
+import NotFound from "../common/NotFound";
+import PrivateRoute from "../common/PrivateRoute";
+import PollList from "../poll/PollList";
 const { Content } = Layout;
 
 class App extends Component {
+  NewPoll;
   constructor(props) {
     super(props);
     this.state = {
@@ -110,7 +115,7 @@ class App extends Component {
                 <Route path="/users/:username"
                        render={(props) => <Profile isAuthenticated={this.state.isAuthenticated} currentUser={this.state.currentUser} {...props}  />}>
                 </Route>
-                <PrivateRoute authenticated={this.state.isAuthenticated} path="/poll/new" component={NewPoll} handleLogout={this.handleLogout}>
+                <PrivateRoute authenticated={this.state.isAuthenticated} path="/poll/new" component={this.NewPoll} handleLogout={this.handleLogout}>
                 </PrivateRoute>
                 <Route component={NotFound}>
                 </Route>
