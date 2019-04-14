@@ -4,7 +4,6 @@ import {
     withRouter
 } from 'react-router-dom';
 import './AppHeader.css';
-import pollIcon from '../poll.svg';
 import { Layout, Menu, Dropdown, Icon } from 'antd';
 const Header = Layout.Header;
 
@@ -31,7 +30,7 @@ class AppHeader extends Component {
                 </Menu.Item>,
                 <Menu.Item key="/poll/new">
                     <Link to="/poll/new">
-                        <Icon type="add square" className="poll-icon" />
+                        <Icon type="plus" className="poll-icon" />
                     </Link>
                 </Menu.Item>,
                 <Menu.Item key="/profile" className="profile-menu">
@@ -55,7 +54,7 @@ class AppHeader extends Component {
             <Header className="app-header">
                 <div className="container">
                     <div className="app-title" >
-                        <Link to="/">Polling App</Link>
+                        <Link to="/">Pollka App</Link>
                     </div>
                     <Menu
                         className="app-menu"
@@ -96,9 +95,9 @@ function ProfileDropdownMenu(props) {
             overlay={dropdownMenu}
             trigger={['click']}
             getPopupContainer = { () => document.getElementsByClassName('profile-menu')[0]}>
-            <a className="ant-dropdown-link">
+            <div className="ant-dropdown-link">
                 <Icon type="user" className="nav-icon" style={{marginRight: 0}} /> <Icon type="down" />
-            </a>
+            </div>
         </Dropdown>
     );
 }

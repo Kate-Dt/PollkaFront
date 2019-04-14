@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import PollList from '../../poll/PollList';
 import { getUserProfile } from '../../util/APIUtils';
-import { Avatar, Tabs } from 'antd';
-import { getAvatarColor } from '../../util/Colors';
+import { Tabs } from 'antd';
 import { formatDate } from '../../util/Helpers';
 import LoadingIndicator  from '../../common/LoadingIndicator';
 import './Profile.css';
@@ -81,17 +80,10 @@ class Profile extends Component {
                     this.state.user ? (
                         <div className="user-profile">
                             <div className="user-details">
-                                <div className="user-avatar">
-                                    <Avatar className="user-avatar-circle" style={{ backgroundColor: getAvatarColor(this.state.user.name)}}>
-                                        {this.state.user.name[0].toUpperCase()}
-                                    </Avatar>
-                                </div>
-                                <div className="user-summary">
-                                    <div className="full-name">{this.state.user.name}</div>
-                                    <div className="username">@{this.state.user.username}</div>
-                                    <div className="user-joined">
-                                        Joined {formatDate(this.state.user.joinedAt)}
-                                    </div>
+                                <span className="full-name">{this.state.user.name}</span>
+                                <span className="username">@{this.state.user.username}</span>
+                                <div className="user-joined">
+                                    Joined {formatDate(this.state.user.joinedAt)}
                                 </div>
                             </div>
                             <div className="user-poll-details">

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { signup, checkUsernameAvailability, checkEmailAvailability } from '../../util/APIUtils';
-import './Signup.css';
+import './SignUp.css';
 import { Link } from 'react-router-dom';
 import {
     NAME_MIN_LENGTH, NAME_MAX_LENGTH,
@@ -12,7 +12,7 @@ import {
 import { Form, Input, Button, notification } from 'antd';
 const FormItem = Form.Item;
 
-class Signup extends Component {
+class SignUp extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -352,4 +352,4 @@ class Signup extends Component {
 
 }
 
-export default Signup;
+export default SignUp;

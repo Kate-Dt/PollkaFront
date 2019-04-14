@@ -127,7 +127,6 @@
 }
 
 .poll-creator-info {
-    margin-left: 58px;
     margin-bottom: 10px;
     height: 58px;
 }
@@ -142,22 +141,6 @@
 .poll-creator-info .creator-link:hover .poll-creator-name {
     color: #1890ff;
     text-decoration: underline;
-}
-
-.poll-creator-avatar {
-    float: left;
-    margin-top: 3px;
-    margin-left: -58px;
-    position: absolute;
-    width: 48px;
-    height: 48px;
-    line-height: 48px;
-    border-radius: 24px;
-}
-
-.poll-creator-avatar > * {
-    line-height: 48px;
-    font-size: 18px;
 }
 
 .poll-creator-name {
