@@ -24,6 +24,10 @@
     }
 }
 
+.poll-header {
+    position: relative;
+}
+
 .poll-choices {
     margin-top: 5px;
     margin-bottom: 15px;
@@ -51,6 +55,20 @@
     margin-right: 15px;
     color: #40a9ff;
     border-color: #40a9ff;
+}
+
+.delete-button{
+    border-radius: 15px;
+    border-color: darkred;
+    color: darkred;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.delete-button:hover{
+    border-color: red;
+    color: red;
 }
 
 .vote-button:hover {

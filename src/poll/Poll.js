@@ -87,6 +87,9 @@ class Poll extends Component {
                                 {formatDateTime(this.props.poll.creationDateTime)}
                             </span>
                         </Link>
+                        {(this.props.isAdmin)?
+                            (<Button className="delete-button" onClick={this.props.handlePollDelete}><Icon type="delete"/></Button>):null
+                        }
                     </div>
                     <div className="poll-question">
                         {this.props.poll.question}

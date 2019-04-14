@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { getAllPolls, getUserCreatedPolls, getUserVotedPolls } from '../util/APIUtils';
+import {deletePoll, getAllPolls, getUserCreatedPolls, getUserVotedPolls} from '../util/APIUtils';
 import Poll from './Poll';
 import { castVote } from '../util/APIUtils';
 import LoadingIndicator  from '../common/LoadingIndicator';
 import { Button, Icon, notification } from 'antd';
-import { POLL_LIST_SIZE } from '../constants';
+import {POLL_LIST_SIZE, ROLE_ADMIN} from '../constants';
 import { withRouter } from 'react-router-dom';
 import './PollList.css';
 
@@ -49,7 +49,6 @@ class PollList extends Component {
             .then(response => {
                 const polls = this.state.polls.slice();
                 const currentVotes = this.state.currentVotes.slice();
-
                 this.setState({
                     polls: polls.concat(response.content),
                     page: response.page,
@@ -102,6 +101,26 @@ class PollList extends Component {
         });
     }
 
+    handlePollDelete(event, pollIndex){
+        event.preventDefault();
+
+        const poll = this.state.polls[pollIndex];
+
+        deletePoll(poll)
+            .then(response => {
+                this.state.polls.splice(pollIndex,1)
+                this.forceUpdate();
+            }).catch(error => {
+                if(error.status === 401){
+                    this.props.handleLogout('/login','error','You have been logged out.')
+                } else {
+                    notification.error({
+                        message: 'Polling App',
+                        description: error.message || 'Sorry! Something went wrong. Please try again!'
+                    })
+                }
+        })
+    }
 
     handleVoteSubmit(event, pollIndex) {
         event.preventDefault();
@@ -145,11 +164,13 @@ class PollList extends Component {
         const pollViews = [];
         this.state.polls.forEach((poll, pollIndex) => {
             pollViews.push(<Poll
+                isAdmin={this.props.currentUser.authorities.filter(a => a.authority === ROLE_ADMIN).length > 0}
                 key={poll.id}
                 poll={poll}
                 currentVote={this.state.currentVotes[pollIndex]}
                 handleVoteChange={(event) => this.handleVoteChange(event, pollIndex)}
-                handleVoteSubmit={(event) => this.handleVoteSubmit(event, pollIndex)} />)
+                handlePollDelete={(event) => this.handlePollDelete(event, pollIndex)}
+                handleVoteSubmit={(event) => this.handleVoteSubmit(event, pollIndex)}/>)
         });
 
         return (

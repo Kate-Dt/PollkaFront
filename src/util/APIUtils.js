@@ -117,3 +117,10 @@ export function getUserVotedPolls(username, page, size) {
         method: 'GET'
     });
 }
+
+export function deletePoll(pollData) {
+    return request({
+        url: API_BASE_URL + "/polls/" + pollData.id,
+        method: 'DELETE'
+    });
+}
