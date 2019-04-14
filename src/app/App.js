@@ -15,6 +15,10 @@ import LoadingIndicator from "../common/LoadingIndicator";
 import NotFound from "../common/NotFound";
 import PrivateRoute from "../common/PrivateRoute";
 import PollList from "../poll/PollList";
+import {getCurrentUser} from "../util/APIUtils";
+import Login from "../User/Login/Login";
+import Signup from "../User/SignUp/SIgnUp";
+import Profile from "../User/Profile/Profile";
 const { Content } = Layout;
 
 class App extends Component {
