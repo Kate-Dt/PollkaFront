@@ -164,7 +164,7 @@ class PollList extends Component {
         const pollViews = [];
         this.state.polls.forEach((poll, pollIndex) => {
             pollViews.push(<Poll
-                isAdmin={this.props.currentUser.authorities.filter(a => a.authority === ROLE_ADMIN).length > 0}
+                isAdmin={this.props.currentUser && this.props.currentUser.authorities.filter(a => a.authority === ROLE_ADMIN).length > 0}
                 key={poll.id}
                 poll={poll}
                 currentVote={this.state.currentVotes[pollIndex]}
